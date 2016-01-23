@@ -1,0 +1,7 @@
+setuptools
+Products.CMFPlone
+bda.plone.payment
+paymill-wrapper
+
+[test]
+plone.app.testing

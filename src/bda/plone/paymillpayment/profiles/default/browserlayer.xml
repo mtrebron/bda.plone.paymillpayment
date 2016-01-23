@@ -1,0 +1,6 @@
+<layers>
+ <layer
+     name="bda.plone.paymillpayment"
+     interface="bda.plone.paymillpayment.interfaces.IAddonSpecific"
+     />
+</layers>

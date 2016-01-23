@@ -1,0 +1,53 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="bda.plone.paymillpayment">
+
+
+    <include package="Products.CMFCore" />
+    <include package="five.grok" />
+    <include package="bda.plone.payment" />
+
+<!--
+    Load template overrides using z3c.jbot
+-->
+    <include package="z3c.jbot" file="meta.zcml" />
+
+    
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <grok:grok package="." />
+
+    <i18n:registerTranslations directory="locales" />
+
+<!--
+  <include package=".paymill_payment" />
+-->
+    <genericsetup:registerProfile
+        name="default"
+        title="bda.plone.paymillpayment"
+        directory="profiles/default"
+        description='Paymill payment extension for bda.plone.shop'
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+<!--
+    Declare mapping between portal_skins theme name and Zope 3 browser layers 
+-->
+    <interface
+        interface=".interfaces.IThemeSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="bda.plone.paymillpayment"
+    />
+
+    <browser:jbot
+        directory="browser"
+        layer=".interfaces.IAddonSpecific"
+    />
+
+</configure>
